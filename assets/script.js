@@ -26,10 +26,12 @@ function displayTimeBlockColors(){
     }
 }
 
-function saveData(){
-   console.log(this.value)
+function saveData(event){
+   event.preventDefault();
+
+   console.log(event.target)
 }
 
 displayTimeBlockColors()
 
-$("button").on('click', saveData())
+$(".container").on('click', '.saveBtn', saveData)
