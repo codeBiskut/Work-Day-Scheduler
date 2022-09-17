@@ -34,4 +34,7 @@ function saveData(event){
 
 displayTimeBlockColors()
 
-$(".container").on('click', '.saveBtn', saveData)
+$(".saveBtn").on('click', function(){
+   console.log($(this).parent().siblings('.col-sm-10').children().val())
+   
+})
