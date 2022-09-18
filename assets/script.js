@@ -27,30 +27,37 @@ function displayTimeBlockColors() {
 }
 
 function loadAppointments() {
-   //check if the day is still the same; if not then wipe local
+   //check if the day is still the same
    var lastUpdatedTime = localStorage.getItem('lastUpdated')
+   
+   //if it is, loop through timeblocks
    if (systemTime === lastUpdatedTime) {
-      for (var i = 0; i < timeBlocksArr.length - 1; i++) {
+      for (var i = 0; i < timeBlocksArr.length; i++) {
+         //if there's a value, then change the value of the corresponding textarea
          if (localStorage.getItem(timeBlocksArr[i])) {
             var timeblockTextEl = $("#" + timeBlocksArr[i])
             timeblockTextEl.text(localStorage.getItem(timeBlocksArr[i]))
          }
       }
    }
+   //if it's not the same day, then wipe local and reset last updated time
    else {
       localStorage.clear()
       localStorage.setItem('lastUpdated', systemTime)
    }
-   //if it is, loop through timeblocks and if there's a value, then change the value of the corresponding textarea
+   
 }
 
 
 displayTimeBlockColors()
 loadAppointments()
 
+//upon click of a save button
 $(".saveBtn").on('click', function () {
+   //grab the timeblock
    timeblockEl = $(this).parent().siblings('.col-sm-10').children()
-   // console.log(timeblockEl.val(), timeblockEl.attr('id'))
+
+   //set user's text paired with timeblock hour in localstorage, then update time
    localStorage.setItem(timeblockEl.attr('id'), timeblockEl.val())
    localStorage.setItem('lastUpdated', systemTime)
 })
