@@ -26,15 +26,10 @@ function displayTimeBlockColors(){
     }
 }
 
-function saveData(event){
-   event.preventDefault();
-
-   console.log(event.target)
-}
-
 displayTimeBlockColors()
 
 $(".saveBtn").on('click', function(){
-   console.log($(this).parent().siblings('.col-sm-10').children().val())
-   
+   timeblockEl = $(this).parent().siblings('.col-sm-10').children()
+   // console.log(timeblockEl.val(), timeblockEl.attr('id'))
+   localStorage.setItem(timeblockEl.attr('id'), timeblockEl.val())
 })
